@@ -7,8 +7,8 @@ function addBlackSolid() {
         return
     }
 
-    // レイヤーを選択していればその上に追加したいが、レイヤーを追加すると選択が移るため、先に取得する
-    const topOfSelected = activeItem.selectedLayers[0]
+    // レイヤーを追加すると選択が移るため、先に取得する
+    const selectedLayers = activeItem.selectedLayers
 
     const newSolid = activeItem.layers.addSolid(
         [0, 0, 0],
@@ -19,10 +19,18 @@ function addBlackSolid() {
         activeItem.duration
     )
 
-    if (topOfSelected === undefined) {
+    if (selectedLayers.length === 0) {
         newSolid.moveToBeginning()
     } else {
-        newSolid.moveBefore(topOfSelected)
+        let topOfSelectedLayers = selectedLayers[0]
+
+        for (const selectedLayer of selectedLayers) {
+            if (topOfSelectedLayers.index > selectedLayer.index) {
+                topOfSelectedLayers = selectedLayer
+            }
+        }
+
+        newSolid.moveBefore(topOfSelectedLayers)
     }
 }
 

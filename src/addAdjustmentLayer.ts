@@ -7,8 +7,8 @@ function addAdjustmentLayer() {
         return
     }
 
-    // レイヤーを選択していればその上に追加したいが、レイヤーを追加すると選択が移るため、先に取得する
-    const topOfSelected = activeItem.selectedLayers[0]
+    // レイヤーを追加すると選択が移るため、先に取得する
+    const selectedLayers = activeItem.selectedLayers
 
     const newSolid = activeItem.layers.addSolid(
         [1, 1, 1],
@@ -22,12 +22,26 @@ function addAdjustmentLayer() {
     // Lavender by default
     newSolid.label = 5
 
-    if (topOfSelected === undefined) {
+    if (selectedLayers.length === 0) {
         newSolid.moveToBeginning()
     } else {
-        newSolid.moveBefore(topOfSelected)
-        newSolid.inPoint = topOfSelected.inPoint
-        newSolid.outPoint = topOfSelected.outPoint
+        // 選択レイヤー全体の尺をカバーする + 選択レイヤーの中で最も上にあるレイヤーの直上に置く
+        let minInPoint = 10e9
+        let maxOutPoint = -10e9
+        let topOfSelectedLayers = selectedLayers[0]
+
+        for (const selectedLayer of selectedLayers) {
+            minInPoint = Math.min(minInPoint, selectedLayer.inPoint)
+            maxOutPoint = Math.max(maxOutPoint, selectedLayer.outPoint)
+
+            if (topOfSelectedLayers.index > selectedLayer.index) {
+                topOfSelectedLayers = selectedLayer
+            }
+        }
+
+        newSolid.inPoint = minInPoint
+        newSolid.outPoint = maxOutPoint
+        newSolid.moveBefore(topOfSelectedLayers)
     }
 }
 
