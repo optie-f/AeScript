@@ -19,6 +19,8 @@ function addAdjustmentLayer() {
         activeItem.duration
     )
     newSolid.adjustmentLayer = true
+    // Lavender by default
+    newSolid.label = 5
 
     if (topOfSelected === undefined) {
         newSolid.moveToBeginning()
