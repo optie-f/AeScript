@@ -4,22 +4,21 @@
     "main": "dist/app.js",
     "license": "MIT",
     "devDependencies": {
-        "@parcel/transformer-typescript-tsc": "^2.0.0-beta.1",
+        "@typescript-eslint/eslint-plugin": "^4.29.1",
+        "@typescript-eslint/parser": "^4.29.1",
         "eslint": "^7.32.0",
-        "parcel": "^2.0.0-rc.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "parcel-bundler": "^1.12.5",
         "prettier": "^2.3.2",
         "types-for-adobe": "github:pravdomil/types-for-adobe",
         "typescript": "^4.3.5",
-        "@typescript-eslint/eslint-plugin": "^4.29.1",
-        "@typescript-eslint/parser": "^4.29.1",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^3.4.0",
         "extendscript-es5-shim-ts": "~0.0.1"
     },
     "dependencies": {},
     "scripts": {
-        "watch": "./node_modules/.bin/parcel watch",
-        "build": "./node_modules/.bin/parcel build",
+        "watch": "./node_modules/.bin/parcel watch --no-source-maps --bundle-node-modules -o app.jsx ",
+        "build": "./node_modules/.bin/parcel build --no-source-maps --bundle-node-modules -d dist/build/",
         "lint": "./node_modules/.bin/eslint src/ --ext ts --fix"
     }
 }

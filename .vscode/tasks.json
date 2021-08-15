@@ -5,7 +5,7 @@
             "label": "Run App script (not working)",
             "type": "shell",
             "command": "\"/mnt/c/Program Files/Adobe/Adobe After Effects 2021/Support Files/AfterFX.com\"",
-            "args": ["-r", "./dst/app.js"],
+            "args": ["-r", "./dist/app.jsx"],
             "problemMatcher": []
         }
     ]
