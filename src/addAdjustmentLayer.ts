@@ -1,5 +1,10 @@
-// Copyright © 2021 Optie. All rights reserved.
+/** Copyright © 2021 Optie. All rights reserved. */
 
+/**
+ * アクティブなコンポジションに、そのコンポと同サイズの調整レイヤーを追加する。
+ * - レイヤーが選択されていない場合、コンポの一番上に、コンポと同じ尺で追加する。
+ * - レイヤーが選択されている場合、選択レイヤーの直上に、選択したレイヤーをすべてカバーする尺で追加する。
+ */
 function addAdjustmentLayer() {
     const activeItem = app.project.activeItem
 

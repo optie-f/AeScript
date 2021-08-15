@@ -1,5 +1,10 @@
-// Copyright © 2021 Optie. All rights reserved.
+/** Copyright © 2021 Optie. All rights reserved. */
 
+/**
+ * アクティブなコンポジションに、そのコンポと同尺・同サイズの黒平面を追加する。
+ * - レイヤーが選択されていない場合、コンポの一番上に追加する。
+ * - レイヤーが選択されている場合、選択レイヤーの直上に追加する。
+ */
 function addBlackSolid() {
     const activeItem = app.project.activeItem
 
