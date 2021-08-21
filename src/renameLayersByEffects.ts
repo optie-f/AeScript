@@ -39,7 +39,6 @@ export function renameLayersByEffects(): void {
         }
 
         layer.name = effectNames.join('/')
-        alert(effectNames)
     })
 }
 
